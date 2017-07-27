@@ -1,6 +1,6 @@
-package org.lfsmachinelearning.java.gate;
+package org.lfsmachinelearning.java.simple.gate;
 
-import org.lfsmachinelearning.java.main.Unit;
+import org.lfsmachinelearning.java.simple.main.Unit;
 
 public class SigmoidGate implements Gate {
     /**

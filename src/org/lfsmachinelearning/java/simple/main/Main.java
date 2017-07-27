@@ -1,10 +1,10 @@
-package org.lfsmachinelearning.java.main;
+package org.lfsmachinelearning.java.simple.main;
 
 import java.util.Random;
 
-import org.lfsmachinelearning.java.gate.AddGate;
-import org.lfsmachinelearning.java.gate.MultiplyGate;
-import org.lfsmachinelearning.java.gate.SigmoidGate;
+import org.lfsmachinelearning.java.simple.gate.AddGate;
+import org.lfsmachinelearning.java.simple.gate.MultiplyGate;
+import org.lfsmachinelearning.java.simple.gate.SigmoidGate;
 
 /**
  * 

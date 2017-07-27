@@ -1,8 +1,8 @@
-package org.lfsmachinelearning.java.gate;
+package org.lfsmachinelearning.java.simple.gate;
 
-import org.lfsmachinelearning.java.main.Unit;
+import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class AddGate implements Gate {
+public class MultiplyGate implements Gate {
     /**
      * uTop stores gate output value; later is given 'top pull' gradient for backwards pass
      */
@@ -13,13 +13,13 @@ public class AddGate implements Gate {
     public Unit forward(Unit u0, Unit u1) {
         this.u0 = u0;
         this.u1 = u1;
-        this.uTop.value = u0.value + u1.value; // uTop value = gate output
+        this.uTop.value = u0.value * u1.value;
         return this.uTop;
     }
 
     public void backward() {
-        // For +, gradient of inputs is 1
-        this.u0.grad += 1 * this.uTop.grad;
-        this.u1.grad += 1 * this.uTop.grad;
+        // For *, gradient of u0 is u1 and vice versa!
+        this.u0.grad += this.u1.value * this.uTop.grad;
+        this.u1.grad += this.u0.value * this.uTop.grad;
     }
 }

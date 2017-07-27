@@ -1,4 +1,4 @@
-package org.lfsmachinelearning.java.gate;
+package org.lfsmachinelearning.java.simple.gate;
 
 public interface Gate {    
     /**

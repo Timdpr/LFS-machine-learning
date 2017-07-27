@@ -1,4 +1,4 @@
-package org.lfsmachinelearning.java.main;
+package org.lfsmachinelearning.java.simple.main;
 
 /**
  * Stores a value and a gradient. If parameter not given, initialises to 0.0
