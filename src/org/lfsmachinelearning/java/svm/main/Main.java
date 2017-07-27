@@ -17,30 +17,35 @@ public class Main {
         data.add(new Pair(-1.0, 1.1)); labels.add(-1);
         data.add(new Pair(2.1, -3.0)); labels.add(1);
         svm = new SVM();
-        
-        for (int iter=0; iter<400; iter++) {
+
+        for (int iter=0; iter<401; iter++) {
             int i = (int) Math.floor(Math.random() * data.size());
             Unit x = new Unit(data.get(i).getX());
             Unit y = new Unit(data.get(i).getY());
             int label = labels.get(i);
-            
+
             svm.learnFrom(x, y, label);
-            
-            if(iter % 25 == 0) { // every 10 iterations... 
+
+            if (evalTrainingAccuracy() == 1.0) {
+                System.out.println("Accuracy is 1.0 at iter " + iter + "!");
+                break;
+            }
+
+            if (iter % 25 == 0) { // every 25 iterations... 
                 System.out.println("Training accuracy at iter " + iter + ": " + evalTrainingAccuracy());
-              }
+            }
         }
     }
-    
+
     public static double evalTrainingAccuracy() {
         double numCorrect = 0.0;
         for (int i=0; i<data.size(); i++) {
             Unit x = new Unit(data.get(i).getX());
             Unit y = new Unit(data.get(i).getY());
-            
+
             int trueLabel = labels.get(i);
             int predictedLabel = svm.forward(x, y).value > 0 ? 1 : -1;
-            
+
             if (predictedLabel == trueLabel) {
                 numCorrect++;
             }
