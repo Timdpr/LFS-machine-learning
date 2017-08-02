@@ -5,20 +5,17 @@ import org.lfsmachinelearning.java.simple.gate.MultiplyGate;
 import org.lfsmachinelearning.java.simple.main.Unit;
 
 public class Circuit {
-    public MultiplyGate mulg0 = new MultiplyGate();
-    public MultiplyGate mulg1 = new MultiplyGate();
-    public AddGate addg0 = new AddGate();
-    public AddGate addg1 = new AddGate();
-    
-    public Unit ax;
-    public Unit by;
-    public Unit axpby;
-    public Unit axpbypc;
+    private final MultiplyGate mulg0 = new MultiplyGate();
+    private final MultiplyGate mulg1 = new MultiplyGate();
+    private final AddGate addg0 = new AddGate();
+    private final AddGate addg1 = new AddGate();
+
+    private Unit axpbypc;
     
     public Unit forward(Unit x, Unit y, Unit a, Unit b, Unit c) {
-        ax = this.mulg0.forward(a, x); // a*x
-        by = this.mulg1.forward(b, y); // b*y
-        axpby = this.addg0.forward(ax, by); // a*x + b*y
+        Unit ax = this.mulg0.forward(a, x);
+        Unit by = this.mulg1.forward(b, y);
+        Unit axpby = this.addg0.forward(ax, by);
         axpbypc = this.addg1.forward(axpby, c); // a*x + b*y + c
         return axpbypc;
     }

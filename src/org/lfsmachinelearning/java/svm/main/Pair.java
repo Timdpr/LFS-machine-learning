@@ -1,8 +1,8 @@
 package org.lfsmachinelearning.java.svm.main;
 
-public class Pair {
-    double x;
-    double y;
+class Pair {
+    private final double x;
+    private final double y;
     
     public Pair(double x, double y) {
         this.x = x;

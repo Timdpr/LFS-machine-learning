@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class Main {
-    private static ArrayList<Pair> data = new ArrayList<Pair>();
-    private static ArrayList<Integer> labels = new ArrayList<Integer>();
+class Main {
+    private static final ArrayList<Pair> data = new ArrayList<>();
+    private static final ArrayList<Integer> labels = new ArrayList<>();
     private static SVM svm;
 
     public static void main(String[] args) {
@@ -37,7 +37,7 @@ public class Main {
         }
     }
 
-    public static double evalTrainingAccuracy() {
+    private static double evalTrainingAccuracy() {
         double numCorrect = 0.0;
         for (int i=0; i<data.size(); i++) {
             Unit x = new Unit(data.get(i).getX());

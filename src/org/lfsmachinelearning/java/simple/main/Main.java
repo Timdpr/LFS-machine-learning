@@ -19,17 +19,13 @@ import org.lfsmachinelearning.java.simple.gate.SigmoidGate;
  * very simple neural network and a learning tool, it's great!
  * 
  */
-public class Main {
+class Main {
     private static Unit a;
     private static Unit b;
     private static Unit c;
     private static Unit x;
     private static Unit y;
 
-    private static Unit ax;
-    private static Unit by;
-    private static Unit axpby;
-    private static Unit axpbypc;
     private static Unit s;
 
     private static MultiplyGate mulg0;
@@ -38,14 +34,14 @@ public class Main {
     private static AddGate addg1;
     private static SigmoidGate sg0;
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     public static void main(String[] args) {
         createUnitsAndGates();
         run();
     }
 
-    public static void run() {     
+    private static void run() {
         System.out.println("Inputs initially:\na: " + a.value + " b: " + b.value + " c: " + c.value + " x: " + x.value + " y: " + y.value + "\n");
         int numberOfIterations = 10000;
         for (int i=0; i<numberOfIterations; i++) {
@@ -62,16 +58,16 @@ public class Main {
         }
     }
 
-    public static void forwardNeuron() {
+    private static void forwardNeuron() {
         // do the forward pass
-        ax = mulg0.forward(a, x); // a*x
-        by = mulg1.forward(b, y); // b*y
-        axpby = addg0.forward(ax, by); // a*x + b*y
-        axpbypc = addg1.forward(axpby, c); // a*x + b*y + c
+        Unit ax = mulg0.forward(a, x);
+        Unit by = mulg1.forward(b, y);
+        Unit axpby = addg0.forward(ax, by);
+        Unit axpbypc = addg1.forward(axpby, c);
         s = sg0.forward(axpbypc); // sig(a*x + b*y + c)
     }
 
-    public static void backwardNeuron() {
+    private static void backwardNeuron() {
         // compute gradients
         s.grad = 1.0;
         sg0.backward(); // writes gradient into axpbypc
@@ -81,7 +77,7 @@ public class Main {
         mulg0.backward(); // writes gradients into a and x
     }
 
-    public static void modifyInputs() {
+    private static void modifyInputs() {
         // 'pull on' inputs using gradients
         double step_size = 0.01;
         a.value += step_size * a.grad;
@@ -91,7 +87,7 @@ public class Main {
         y.value += step_size * y.grad;
     }
 
-    public static void createUnitsAndGates() {
+    private static void createUnitsAndGates() {
         a = new Unit(random.nextInt(11)-5);
         b = new Unit(random.nextInt(11)-5);
         c = new Unit(random.nextInt(11)-5);

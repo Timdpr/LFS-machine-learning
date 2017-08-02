@@ -2,11 +2,11 @@ package org.lfsmachinelearning.java.simple.gate;
 
 import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class MultiplyGate implements Gate {
+public class MultiplyGate {
     /**
      * uTop stores gate output value; later is given 'top pull' gradient for backwards pass
      */
-    private Unit uTop = new Unit();
+    private final Unit uTop = new Unit();
     private Unit u0 = new Unit();
     private Unit u1 = new Unit();
 

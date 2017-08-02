@@ -2,7 +2,7 @@ package org.lfsmachinelearning.java.simple.gate;
 
 import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class SigmoidGate implements Gate {
+public class SigmoidGate {
     /**
      * uTop stores gate output value; later is given 'top pull' gradient for backwards pass
      */

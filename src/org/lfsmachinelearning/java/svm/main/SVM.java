@@ -2,20 +2,20 @@ package org.lfsmachinelearning.java.svm.main;
 
 import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class SVM {
-    public Unit a = new Unit(1.0, 0.0); // random initial parameters
-    public Unit b = new Unit(-2.0, 0.0);
-    public Unit c = new Unit(-1.0, 0.0);
-    public Unit unitOut;
+class SVM {
+    private final Unit a = new Unit(1.0, 0.0); // random initial parameters
+    private final Unit b = new Unit(-2.0, 0.0);
+    private final Unit c = new Unit(-1.0, 0.0);
+    private Unit unitOut;
 
-    public Circuit circuit = new Circuit();
+    private final Circuit circuit = new Circuit();
 
     public Unit forward(Unit x, Unit y) {
         this.unitOut = this.circuit.forward(x, y, a, b, c);
         return unitOut;
     }
 
-    public void backward(double label) { // label is +1 or -1
+    private void backward(double label) { // label is +1 or -1
         // reset pulls
         a.grad = 0;
         b.grad = 0;
@@ -38,7 +38,7 @@ public class SVM {
         this.parameterUpdate(); // parameters respond to tug
     }
 
-    public void parameterUpdate() {
+    private void parameterUpdate() {
         double stepSize = 0.01;
         a.value += stepSize * a.grad;
         b.value += stepSize * b.grad;
