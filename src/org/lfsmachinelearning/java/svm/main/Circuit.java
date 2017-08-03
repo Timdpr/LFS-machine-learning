@@ -4,7 +4,7 @@ import org.lfsmachinelearning.java.simple.gate.AddGate;
 import org.lfsmachinelearning.java.simple.gate.MultiplyGate;
 import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class Circuit {
+class Circuit {
     private final MultiplyGate mulg0 = new MultiplyGate();
     private final MultiplyGate mulg1 = new MultiplyGate();
     private final AddGate addg0 = new AddGate();

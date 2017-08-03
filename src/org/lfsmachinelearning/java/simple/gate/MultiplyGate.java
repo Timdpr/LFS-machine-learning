@@ -2,24 +2,18 @@ package org.lfsmachinelearning.java.simple.gate;
 
 import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class MultiplyGate {
-    /**
-     * uTop stores gate output value; later is given 'top pull' gradient for backwards pass
-     */
-    private final Unit uTop = new Unit();
-    private Unit u0 = new Unit();
-    private Unit u1 = new Unit();
+public class MultiplyGate extends Gate{
 
     public Unit forward(Unit u0, Unit u1) {
-        this.u0 = u0;
-        this.u1 = u1;
-        this.uTop.value = u0.value * u1.value;
-        return this.uTop;
+        setU0(u0);
+        setU1(u1);
+        setUTop(new Unit(u0.value * u1.value)); // uTop value = gate output
+        return getUTop();
     }
 
     public void backward() {
         // For *, gradient of u0 is u1 and vice versa!
-        this.u0.grad += this.u1.value * this.uTop.grad;
-        this.u1.grad += this.u0.value * this.uTop.grad;
+        getU0().grad += getU1().value * getUTop().grad;
+        getU1().grad += getU0().value * getUTop().grad;
     }
 }

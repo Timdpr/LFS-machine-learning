@@ -2,23 +2,18 @@ package org.lfsmachinelearning.java.simple.gate;
 
 import org.lfsmachinelearning.java.simple.main.Unit;
 
-public class SigmoidGate {
-    /**
-     * uTop stores gate output value; later is given 'top pull' gradient for backwards pass
-     */
-    private Unit uTop = new Unit();
-    private Unit u0 = new Unit();
+public class SigmoidGate extends Gate {
 
     public Unit forward(Unit u0) {
-        this.u0 = u0;
-        this.uTop = new Unit(getSigmoid(u0.value));
-        return this.uTop;
+        setU0(u0);
+        setUTop(new Unit(getSigmoid(u0.value)));
+        return getUTop();
     }
 
     public void backward() {
-        double x = getSigmoid(this.u0.value);
+        double x = getSigmoid(getU0().value);
         // Calculation of gradient with respect to its input for sigmoid function:
-        this.u0.grad += (x * (1 - x)) * this.uTop.grad; 
+        getU0().grad += (x * (1 - x)) * getUTop().grad;
     }
 
     private double getSigmoid(double s) {
